@@ -1,0 +1,52 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--5d78c459:167126f9ed1:-7fed</id>
+  <name>province</name>
+  <nativeName>province</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl-571bb01b:167123b0a6f:-7ffe</id>
+  </namespace>
+  <title>province</title>
+  <abstract>province</abstract>
+  <keywords>
+    <string>features</string>
+    <string>province</string>
+  </keywords>
+  <nativeCRS>GEOGCS[&quot;Beijing 1954&quot;, &#xd;
+  DATUM[&quot;Beijing 1954&quot;, &#xd;
+    SPHEROID[&quot;Krassowsky 1940&quot;, 6378245.0, 298.3, AUTHORITY[&quot;EPSG&quot;,&quot;7024&quot;]], &#xd;
+    TOWGS84[15.8, -154.4, -82.3, 0.0, 0.0, 0.0, 0.0], &#xd;
+    AUTHORITY[&quot;EPSG&quot;,&quot;6214&quot;]], &#xd;
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], &#xd;
+  UNIT[&quot;degree&quot;, 0.017453292519943295], &#xd;
+  AXIS[&quot;Geodetic longitude&quot;, EAST], &#xd;
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], &#xd;
+  AUTHORITY[&quot;EPSG&quot;,&quot;4214&quot;]]</nativeCRS>
+  <srs>EPSG:4214</srs>
+  <nativeBoundingBox>
+    <minx>73.62</minx>
+    <maxx>134.77</maxx>
+    <miny>18.11</miny>
+    <maxy>53.56</maxy>
+    <crs>EPSG:4214</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>73.61911417391396</minx>
+    <maxx>134.77147165159332</maxx>
+    <miny>18.109646761029747</miny>
+    <maxy>53.56070529841379</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--5d78c459:167126f9ed1:-7fef</id>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

@@ -1,0 +1,4 @@
+for /f "delims=" %%i in ('dir /b/s "%~dp0..\webapps\geoserver\WEB-INF\lib\marlin*.jar"') do set MARLIN_JAR=%%i
+if not "%MARLIN_JAR%" == "" set MARLIN_ENABLER=-Xbootclasspath/a:"%MARLIN_JAR%" -Dsun.java2d.renderer=org.marlin.pisces.MarlinRenderingEngine
+
+call "C:\Program Files (x86)\Java\jdk1.8.0_191\bin\java.exe" %MARLIN_ENABLER% -DGEOSERVER_DATA_DIR="F:\Geoserver\GeoServer 2.14.0\data_dir" -Xmx512m -DSTOP.PORT=8079 -DSTOP.KEY=geoserver -Djetty.base="F:\Geoserver\GeoServer 2.14.0" -Djetty.logs="F:\Geoserver\GeoServer 2.14.0\logs" -jar "F:\Geoserver\GeoServer 2.14.0\start.jar" --module=http jetty.port=8081

@@ -1,0 +1,22 @@
+<dataStore>
+  <id>DataStoreInfoImpl--5d78c459:167126f9ed1:-7feb</id>
+  <name>foresty_point</name>
+  <type>Shapefile</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-571bb01b:167123b0a6f:-7fff</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="charset">GBK</entry>
+    <entry key="filetype">shapefile</entry>
+    <entry key="create spatial index">true</entry>
+    <entry key="memory mapped buffer">false</entry>
+    <entry key="timezone">Asia/Shanghai</entry>
+    <entry key="enable spatial index">true</entry>
+    <entry key="namespace">http://localhost:8081/geoserver/wms</entry>
+    <entry key="cache and reuse memory maps">true</entry>
+    <entry key="url">file:data/forestData/中国市县气候分布.shp</entry>
+    <entry key="fstype">shape</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>

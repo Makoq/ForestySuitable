@@ -1,0 +1,36 @@
+<layerGroup>
+  <id>LayerGroupInfoImpl--5d78c459:167126f9ed1:-7fe8</id>
+  <name>foresty</name>
+  <mode>SINGLE</mode>
+  <title>foresty</title>
+  <workspace>
+    <id>WorkspaceInfoImpl-571bb01b:167123b0a6f:-7fff</id>
+  </workspace>
+  <publishables>
+    <published type="layer">
+      <id>LayerInfoImpl--5d78c459:167126f9ed1:-7fec</id>
+    </published>
+    <published type="layer">
+      <id>LayerInfoImpl--5d78c459:167126f9ed1:-7fe9</id>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <id>StyleInfoImpl--570ae188:124761b8d78:-7fe0</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl--570ae188:124761b8d78:-7fdf</id>
+    </style>
+  </styles>
+  <bounds>
+    <minx>73.62</minx>
+    <maxx>134.77</maxx>
+    <miny>18.11</miny>
+    <maxy>53.56</maxy>
+    <crs>EPSG:4214</crs>
+  </bounds>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layerGroup>
