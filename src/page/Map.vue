@@ -113,7 +113,7 @@ export default {
                             if(res){
                                 vue.searchResult=res
                                 vue.activeSearchRe.push('1')
-                                //   this.$refs.sr.$el.style.display='bolck'
+                               
                             }
                         });
           }
