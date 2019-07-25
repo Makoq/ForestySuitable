@@ -1,10 +1,69 @@
 <template>
     <div id="map" ref="mapcontainer"  >
-       <h1 style="margin-left:5%;position:fixed;z-index:2"><strong>Foresty Suitable Land Web System</strong></h1>
-       <!-- <div id="nodelist"></div> -->
+       <!--head title -->
+       <h1 style="margin-left:5%;position:fixed;z-index:2"><strong>Foresty Suitable Land  Web System</strong></h1>
+        
+        <!-- popup -->
         <div id="popup" class="ol-popup">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
         <div id="popup-content"></div>
+        </div>
+
+        <!-- search part -->
+        <div   class="search-panel">
+            <el-form :inline="true" class="demo-form-inline">
+                <el-form-item   >
+                    <el-input v-model="searchData" placeholder="种名搜索.."></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button icon="el-icon-search" circle @click="searchBySpecieName"></el-button>
+                </el-form-item>
+            </el-form>
+          
+        <el-collapse v-model="activeSearchRe"   >
+                <el-collapse-item title=">>>>>>>检索结果" name="1" style="width:100%:margin:5px;">
+                        <el-table
+             
+                :data="searchResult.data"
+                height="550"
+                stripe
+                border
+                style="width: 100%; ">
+                <el-table-column
+                    prop="SpecieName"
+                    label="种名"
+                    width="80">
+                </el-table-column>
+                <el-table-column
+                    prop="Distribute"
+                    label="分布地区"
+                    width="130">
+                </el-table-column>
+                <el-table-column
+                    prop="FirstForestyArea"
+                    label="温度带"
+                    width="80">
+                </el-table-column>
+                <el-table-column
+                    prop="SuitableSoil"
+                    label="适地特征"
+                    width="80">
+                </el-table-column>
+                <el-table-column
+                    prop="SuitableAltitude"
+                    label="海拔"
+                    width="80">
+                </el-table-column>
+             
+                
+
+
+                </el-table>
+       
+                </el-collapse-item>
+        </el-collapse>
+              
+
         </div>
     </div>
      
@@ -25,21 +84,48 @@ import {defaults as defaultControls,ScaleLine} from 'ol/control.js';
 import 'ol/ol.css';
 import Overlay from 'ol/Overlay';
 
+
+ 
+
 export default {
  
   data(){
       return{
-          map:null    
+          map:null,
+          searchData:'',
+          searchResult:'',
+          activeSearchRe:['1']
+           
       };
   },
   methods:{
-      clickInfo(){
+      searchBySpecieName(){
+          let vue=this
+          if(this.searchData.length===0){
+              this.searchResult=[]
+          }else{
+                this.$axios.get('/search',{
+                            params:{
+                                keyWord:this.searchData
+                            }
+                        })
+                        .then(res=>{
+                            if(res){
+                                vue.searchResult=res
+                                
+                                //   this.$refs.sr.$el.style.display='bolck'
+                            }
+                        });
+          }
+          
 
       }
   },
   
   mounted(){
       
+       
+
       var container = document.getElementById('popup');
       var content = document.getElementById('popup-content');
       var closer = document.getElementById('popup-closer');
@@ -123,6 +209,8 @@ export default {
         var viewResolution = view.getResolution();
         var source = foresty_point
         
+        
+        //获取要素属性信息
         var url = source.getGetFeatureInfoUrl(
           evt.coordinate, viewResolution, view.getProjection(),
           {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50});
@@ -156,21 +244,20 @@ export default {
 #map .ol-overlaycontainer-stopevent {
     display: none;
 }
-/* #nodelist{
-    z-index: 1;
-    height: 100px;
-    width: 800px; 
-    background: white;
-    opacity: .7;
-    margin-left: 45%;
-    margin-top: 0;
-    position: fixed;   
-    -moz-outline-radius: .6;
-     
-} */
-#nodelist:hover{
-    opacity: 1;
-}
+
+.hiddenResultPanel{
+     visibility: hidden;
+ }
+ .searchResultShow{
+
+     height: 600px;
+     width: 100%;
+     overflow-y:scroll ;
+     /* overflow-x:scroll ; */
+
+ }
+ 
+  
  
 
 
@@ -215,5 +302,15 @@ export default {
       }
       .ol-popup-closer:after {
         content: "✖";
+      }
+
+
+
+      .search-panel{
+        width: 470px;
+        position: fixed;
+        z-index: 2;
+        margin-left: 70%;
+        margin-top: 40px;
       }
 </style>
