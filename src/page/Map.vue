@@ -21,7 +21,7 @@
             </el-form>
           
         <el-collapse v-model="activeSearchRe"   >
-                <el-collapse-item title=">>>>>>>检索结果" name="1" style="width:100%:margin:5px;">
+                <el-collapse-item title=" 检索结果" name="1" style="width:100%:margin:5px;">
                         <el-table
              
                 :data="searchResult.data"
@@ -94,7 +94,7 @@ export default {
           map:null,
           searchData:'',
           searchResult:'',
-          activeSearchRe:['1']
+          activeSearchRe:[]
            
       };
   },
@@ -112,7 +112,7 @@ export default {
                         .then(res=>{
                             if(res){
                                 vue.searchResult=res
-                                
+                                vue.activeSearchRe.push('1')
                                 //   this.$refs.sr.$el.style.display='bolck'
                             }
                         });
