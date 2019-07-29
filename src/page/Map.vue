@@ -1,12 +1,12 @@
 <template>
     <div id="map" ref="mapcontainer"  >
        <!--head title -->
-       <h1 style="margin-left:5%;position:fixed;z-index:2"><strong>Foresty Suitable Land  Web System</strong></h1>
+       <h1 style="margin-left:5%;position:fixed;z-index:2"><strong>Web GIS System</strong></h1>
         
         <!-- popup -->
-        <div id="popup" class="ol-popup">
+        <div id="popup" class="ol-popup" v-loading="loading">
         <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-        <div id="popup-content"></div>
+        <div id="popup-content" ></div>
         </div>
 
         <!-- search part -->
@@ -94,7 +94,8 @@ export default {
           map:null,
           searchData:'',
           searchResult:'',
-          activeSearchRe:[]
+          activeSearchRe:[],
+          loading:false,
            
       };
   },
@@ -104,7 +105,7 @@ export default {
           if(this.searchData.length===0){
               this.searchResult=[]
           }else{
-                this.$axios.get('/search',{
+                this.$axios.get('/api/search',{
                             params:{
                                 keyWord:this.searchData
                             }
@@ -201,6 +202,8 @@ export default {
         let that=this
         this.map.on('singleclick', function(evt) {
 
+        
+
          var coordinate = evt.coordinate;   
 
         // document.getElementById('nodelist').innerHTML = "Loading... please wait...";
@@ -213,13 +216,35 @@ export default {
         //获取要素属性信息
         var url = source.getGetFeatureInfoUrl(
           evt.coordinate, viewResolution, view.getProjection(),
-          {'INFO_FORMAT': 'text/html', 'FEATURE_COUNT': 50});
+          {'INFO_FORMAT': 'application/json', 'FEATURE_COUNT': 50});
 
+
+         overlay.setPosition(coordinate);
+         that.loading=true;
         if (url) {
-        //   document.getElementById('nodelist').innerHTML = '<iframe seamless id="iframe" style="width:800px;height:200px;border:none;margin-left:10%" src="' + url + '"></iframe>';
+         let arrurl=url.split('/')
+         let url2=(arrurl.slice(4,arrurl.length)).join("/")
+            //获取wms属性，这里用webpack解决跨域
+            that.$axios.get('/geo/'+url2)
+            .then(res=>{
+                if(res.status===200){
+                    
+                    if(res.data.features.length==0){
+                        that.$message("no location info..");
+                        overlay.setPosition(undefined)
+                    }
+                    else if(res.data.features){
+                        
+                        content.innerHTML= '<h2>'+res.data.features[0].properties.RNAME+'</h2>';
+                        that.loading=false
+                    }
+                }
+                // console.log(res.data.features)
+            })
+
         }
-        content.innerHTML= '<div style="height:100% auto;width:100% auto "> <iframe seamless id="iframe" border:none;margin-left:10%" src="' + url + '"></iframe></div>';
-        overlay.setPosition(coordinate);
+        
+        // overlay.setPosition(coordinate);
 
       });
 
@@ -263,12 +288,12 @@ export default {
 
  .ol-popup {
         position: absolute;
-        background-color: white;
+        background-color: #ffffffde;
         -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
         filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
         padding: 15px;
         border-radius: 10px;
-        border: 1px solid #cccccc;
+        border: 1px solid #716f6f;
         bottom: 12px;
         left: -50px;
         min-width: 280px;
