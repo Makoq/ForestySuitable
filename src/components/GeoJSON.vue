@@ -48,6 +48,7 @@ let options = qs.parse(location.search, { ignoreQueryPrefix: true })
                   {name: '黑龙江',value: this.randomData() },]
                 }
                ],
+               
         },
       initOptions: {
         renderer: options.renderer || 'canvas'
