@@ -11,12 +11,12 @@ module.exports = {
             "^/api": ""
           }
         },
-        "/download": {
-          target: "http://localhost:8081/",
+        "/geo": {
+          target: "http://localhost:8081/geoserver",
           ws: true,
           changeOrigin: true,
           pathRewrite: {
-            "^/download": ""
+            "^/geo": ""
           }
         }
       }

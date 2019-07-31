@@ -1,11 +1,11 @@
 <template>
-  <div id="app">
-   <router-view/> 
+  <div id="err404">
+   
   </div>
 </template>
 <style scoped>
  
-#app {
+#err404 {
      
     height:100%;
     width:100%
