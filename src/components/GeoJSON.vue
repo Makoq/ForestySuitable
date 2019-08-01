@@ -1,82 +1,101 @@
 <template>
-   
-     <chart :options="map"
-              :init-options="initOptions"/>
-   
+   <main>
+          <v-chart 
+          :options="geo"
+                    />
+     
+   </main>
+
 </template>
 
 <script>
- import qs from 'qs'
-
 import ECharts from 'vue-echarts'
  
+import xianMap from '../data/china.json'
 
-
-import xianMap from '../../public/data/china.json'
-ECharts.registerMap('china', xianMap)
 import 'echarts/lib/chart/map'
 import 'echarts/lib/component/title.js'
+ECharts.registerMap('china', xianMap);
 
 export default {
   components: {
-    chart: ECharts
+    'v-chart': ECharts
   },
   data () {
     
-let options = qs.parse(location.search, { ignoreQueryPrefix: true })
+
     return {
-        map:{
-            title: {
-                text: '极坐标双数值轴',
-                left:'center'
-              },
-            series: [
-                {
-                  // coordinateSystem: 'polar',
-                  name: 'line',
-                  type: 'map',
-                  // showSymbol: false,
-                  data: [ 
-                  {name: '北京',value: this.randomData() },
-                  {name: '天津',value: this.randomData() },
-                  {name: '上海',value: this.randomData() },
-                  {name: '重庆',value: this.randomData() },
-                  {name: '河北',value: this.randomData() },
-                  {name: '河南',value: this.randomData() },
-                  {name: '云南',value: this.randomData() },
-                  {name: '辽宁',value: this.randomData() },
-                  {name: '黑龙江',value: this.randomData() },]
-                }
-               ],
-               
+        geo:{ 
+          title:
+          {
+            text:"china",
+          },
+          tooltip: {
+            trigger: 'item',
+             
+          },
+          center: [115.97, 29.71],
+          zoom:2,
+          type:"map",
+          roam:true,
+          series:[
+                  {
+                    type: "map",
+                    map: "china",
+                    itemStyle: {
+                      normal: {
+                        areaColor: "rgba(23, 27, 57,0)",
+                        borderColor: "#1dc199",
+                        borderWidth: 1
+                      }
+                    },
+                    data: this.initMapData(xianMap)
+                  }
+                ]
+
+
         },
-      initOptions: {
-        renderer: options.renderer || 'canvas'
-      },
+        d:1,
+    
     }
   },
   methods:{
-    initEChart(){
-      
-    },
-    randomData() {
-      return Math.round(Math.random()*1000);
+
+
+    initMapData(mapJson) {
+        var mapData = [];
+        for (var i = 0; i < mapJson.features.length; i++) {
+          mapData.push({
+            name: mapJson.features[i].properties.name
+            //id:mapJson.features[i].id
+          });
+        }
+        return mapData;
     }
+
   },
   mounted(){
     this.initEChart;
+
+    
+
+    // this.data=new Object
+ 
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
- .echarts {
+<style >
+ 
+.echarts{
+   
+  /* width: 100%;
+  height: 100%; */
+  position:absolute;
+  height: 100%;
   width: 100%;
-  height: 100%;
+   
 }
-.main{
-  height: 100%;
-  width:100%
-}
+   
 </style>

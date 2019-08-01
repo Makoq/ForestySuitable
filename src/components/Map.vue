@@ -220,12 +220,9 @@ export default {
           evt.coordinate, viewResolution, view.getProjection(),
           {'INFO_FORMAT': 'application/json', 'FEATURE_COUNT': 50});
 
-<<<<<<< HEAD:src/components/Map.vue
 
          overlay.setPosition(coordinate);
          that.loading=true;
-=======
->>>>>>> cf5dc94e060af353e3ca03ca5e3cf4e83f057667:src/page/Map.vue
 
          overlay.setPosition(coordinate);
          that.loading=true;
