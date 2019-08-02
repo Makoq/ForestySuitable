@@ -15,6 +15,8 @@ import xianMap from '../data/china.json'
 
 import 'echarts/lib/chart/map'
 import 'echarts/lib/component/title.js'
+import 'echarts/lib/component/tooltip.js'
+
 ECharts.registerMap('china', xianMap);
 
 export default {
@@ -26,26 +28,27 @@ export default {
 
     return {
         geo:{ 
-          title:
-          {
+          title:{
             text:"china",
           },
+
           tooltip: {
-            trigger: 'item',
-             
+            trigger: 'item' 
           },
+
           center: [115.97, 29.71],
           zoom:2,
           type:"map",
           roam:true,
           series:[
                   {
+                    name:"china",
                     type: "map",
                     map: "china",
                     itemStyle: {
                       normal: {
                         areaColor: "rgba(23, 27, 57,0)",
-                        borderColor: "#1dc199",
+                        borderColor: "#9dfff6",
                         borderWidth: 1
                       }
                     },
@@ -66,7 +69,8 @@ export default {
         var mapData = [];
         for (var i = 0; i < mapJson.features.length; i++) {
           mapData.push({
-            name: mapJson.features[i].properties.name
+            // name: mapJson.features[i].properties.name,
+            // level: mapJson.features[i].properties.level,
             //id:mapJson.features[i].id
           });
         }
@@ -95,6 +99,7 @@ export default {
   position:absolute;
   height: 100%;
   width: 100%;
+  background-color: black;
    
 }
    
